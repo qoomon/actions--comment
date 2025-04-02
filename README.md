@@ -9,12 +9,10 @@ jobs:
   example:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
       - uses: qoomon/actions--create-comment@v1
         with:
           issue: 42
-          conntent: Hello World!
+          comment: Hello World!
 ```
 
 ## Development
