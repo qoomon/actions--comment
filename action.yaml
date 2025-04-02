@@ -5,6 +5,10 @@ branding:
   icon: message-square
   color: black
 inputs:
+  issue:
+    description: the issue to comment on
+    required: true
+    default: '${{ github.event.number }}'
   comment:
     description: the comment body
     required: true
@@ -13,11 +17,12 @@ runs:
   steps:
       - uses: actions/github-script@v7
         env:
+          INPUT_ISSUE: ${{ inputs.issue }}
           INPUT_COMMENT: ${{ inputs.comment }}
         with:
           script: |
             github.rest.issues.createComment({
-              issue_number: context.issue.number,
+              issue_number: core.getInput('issue') ?? context.issue.number,
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: core.getInput('comment'),
