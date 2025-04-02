@@ -22,7 +22,7 @@ runs:
         with:
           script: |
             github.rest.issues.createComment({
-              issue_number: core.getInput('issue') ?? context.issue.number,
+              issue_number: core.getInput('issue'),
               owner: context.repo.owner,
               repo: context.repo.repo,
               body: core.getInput('comment'),
